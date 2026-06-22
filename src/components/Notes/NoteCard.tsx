@@ -15,7 +15,7 @@ interface NoteCardProps {
 
 export function NoteCard({ note }: NoteCardProps) {
   const { updateNoteById, deleteNote, togglePin, tags, deletingId } = useNotesStore();
-  const { setSearchQuery, setSelectedCollectionId, openModal } = useUIStore();
+  const { setSearchQuery, selectCollection, openModal } = useUIStore();
   const { collections, addNoteToCollection } = useCollectionsStore();
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(note.content);
@@ -211,7 +211,7 @@ export function NoteCard({ note }: NoteCardProps) {
                 className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                 title="Add to collection"
               >
-                <svg size={13} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
               </button>
               {showCollectionPicker && (
                 <div className="absolute bottom-full right-0 z-30 mb-1 w-40 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
