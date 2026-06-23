@@ -9,7 +9,7 @@ import { formatDateFull } from '../../utils/date';
 import toast from 'react-hot-toast';
 
 export function NoteFocusModal() {
-  const { notes, tags, updateNoteById, deleteNote, restoreNote } = useNotesStore();
+  const { notes, tags, updateNoteById, deleteNote, restoreNote, permanentlyDeleteNote } = useNotesStore();
   const { activeModal, focusNoteId, openModal, closeModal } = useUIStore();
   const { collections, addNoteToCollection, removeNoteFromCollection } = useCollectionsStore();
   const [showMarkdown, setShowMarkdown] = useState(false);
@@ -46,6 +46,12 @@ export function NoteFocusModal() {
     await restoreNote(note.id);
     closeModal();
     toast.success('Note restored');
+  };
+
+  const handlePermanentDelete = async () => {
+    await permanentlyDeleteNote(note.id);
+    closeModal();
+    toast.success('Note permanently deleted');
   };
 
   const handleColorChange = async (colorId: string) => {
@@ -155,9 +161,20 @@ export function NoteFocusModal() {
               <button onClick={handleCopy} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10" title="Copy">
                 <Copy size={15} />
               </button>
-              <button onClick={handleDelete} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:hover:bg-red-950/50 dark:hover:text-red-400" title="Delete">
-                <Trash2 size={15} />
-              </button>
+              {note.isDeleted ? (
+                <>
+                  <button onClick={handleRestore} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-emerald-100 hover:text-emerald-500 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-400" title="Restore">
+                    <RotateCcw size={15} />
+                  </button>
+                  <button onClick={handlePermanentDelete} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:hover:bg-red-950/50 dark:hover:text-red-400" title="Delete forever">
+                    <Trash2 size={15} />
+                  </button>
+                </>
+              ) : (
+                <button onClick={handleDelete} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:hover:bg-red-950/50 dark:hover:text-red-400" title="Delete">
+                  <Trash2 size={15} />
+                </button>
+              )}
               <button onClick={closeModal} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10" title="Close">
                 <X size={15} />
               </button>

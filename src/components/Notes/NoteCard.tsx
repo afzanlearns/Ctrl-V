@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Pin, Trash2, Copy, Palette, FileText } from 'lucide-react';
+import { Pin, Trash2, Copy, Palette, FileText, RotateCcw } from 'lucide-react';
 import type { Note } from '../../store/types';
 import { NOTE_COLORS } from '../../store/types';
 import { useNotesStore } from '../../store/notesStore';
@@ -14,7 +14,7 @@ interface NoteCardProps {
 }
 
 export function NoteCard({ note }: NoteCardProps) {
-  const { updateNoteById, deleteNote, togglePin, tags, deletingId } = useNotesStore();
+  const { updateNoteById, deleteNote, togglePin, tags, deletingId, restoreNote, permanentlyDeleteNote } = useNotesStore();
   const { setSearchQuery, selectCollection, openModal } = useUIStore();
   const { collections, addNoteToCollection } = useCollectionsStore();
   const [isEditing, setIsEditing] = useState(false);
@@ -248,13 +248,32 @@ export function NoteCard({ note }: NoteCardProps) {
           >
             <Copy size={13} />
           </button>
-          <button
-            onClick={() => deleteNote(note.id)}
-            className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:text-gray-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
-            title="Delete"
-          >
-            <Trash2 size={13} />
-          </button>
+          {note.isDeleted ? (
+            <>
+              <button
+                onClick={() => restoreNote(note.id)}
+                className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-emerald-100 hover:text-emerald-500 dark:text-gray-500 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-400"
+                title="Restore"
+              >
+                <RotateCcw size={13} />
+              </button>
+              <button
+                onClick={() => permanentlyDeleteNote(note.id)}
+                className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:text-gray-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
+                title="Delete forever"
+              >
+                <Trash2 size={13} />
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => deleteNote(note.id)}
+              className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:text-gray-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
+              title="Delete"
+            >
+              <Trash2 size={13} />
+            </button>
+          )}
         </div>
       </div>
     </div>
