@@ -94,73 +94,6 @@ export function NoteFocusModal() {
               {note.isPinned && <Pin size={12} className="text-sky-500" fill="currentColor" />}
             </div>
             <div className="flex items-center gap-1">
-              {/* Color picker */}
-              <div className="relative group/color">
-                <button
-                  onClick={() => { }}
-                  className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10"
-                  title="Change color"
-                >
-                  <Palette size={15} />
-                </button>
-                <div className="absolute right-0 top-full z-30 mt-1 hidden group-hover/color:flex gap-1 rounded-lg border border-gray-200 bg-white p-1.5 shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                  {NOTE_COLORS.map((c) => (
-                    <button
-                      key={c.id}
-                      onClick={() => handleColorChange(c.id)}
-                      className={`h-6 w-6 rounded-full border-2 transition-transform hover:scale-125 ${
-                        note.colorId === c.id ? 'border-gray-800 dark:border-white scale-125' : 'border-transparent'
-                      }`}
-                      style={{ backgroundColor: `var(--color-${c.id})` }}
-                      title={c.name}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Markdown toggle */}
-              {hasMd && (
-                <button
-                  onClick={() => setShowMarkdown(!showMarkdown)}
-                  className={`rounded-lg p-1.5 transition-colors ${
-                    showMarkdown
-                      ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/50 dark:text-sky-400'
-                      : 'text-gray-400 hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10'
-                  }`}
-                  title={showMarkdown ? 'Show raw' : 'Render markdown'}
-                >
-                  <FileText size={15} />
-                </button>
-              )}
-
-              {/* Collections */}
-              {unusedCollections.length > 0 && (
-                <div className="relative group/col">
-                  <button
-                    onClick={() => { }}
-                    className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10"
-                    title="Add to collection"
-                  >
-                    <FolderPlus size={15} />
-                  </button>
-                  <div className="absolute right-0 top-full z-30 mt-1 hidden group-hover/col:block w-44 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                    {unusedCollections.map((c) => (
-                      <button
-                        key={c.id}
-                        onClick={() => handleAddToCollection(c.id)}
-                        className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                      >
-                        <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.color }} />
-                        {c.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <button onClick={handleCopy} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10" title="Copy">
-                <Copy size={15} />
-              </button>
               {note.isDeleted ? (
                 <>
                   <button onClick={handleRestore} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-emerald-100 hover:text-emerald-500 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-400" title="Restore">
@@ -171,9 +104,78 @@ export function NoteFocusModal() {
                   </button>
                 </>
               ) : (
-                <button onClick={handleDelete} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:hover:bg-red-950/50 dark:hover:text-red-400" title="Delete">
-                  <Trash2 size={15} />
-                </button>
+                <>
+                  {/* Color picker */}
+                  <div className="relative group/color">
+                    <button
+                      onClick={() => { }}
+                      className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10"
+                      title="Change color"
+                    >
+                      <Palette size={15} />
+                    </button>
+                    <div className="absolute right-0 top-full z-30 mt-1 hidden group-hover/color:flex gap-1 rounded-lg border border-gray-200 bg-white p-1.5 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                      {NOTE_COLORS.map((c) => (
+                        <button
+                          key={c.id}
+                          onClick={() => handleColorChange(c.id)}
+                          className={`h-6 w-6 rounded-full border-2 transition-transform hover:scale-125 ${
+                            note.colorId === c.id ? 'border-gray-800 dark:border-white scale-125' : 'border-transparent'
+                          }`}
+                          style={{ backgroundColor: `var(--color-${c.id})` }}
+                          title={c.name}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Markdown toggle */}
+                  {hasMd && (
+                    <button
+                      onClick={() => setShowMarkdown(!showMarkdown)}
+                      className={`rounded-lg p-1.5 transition-colors ${
+                        showMarkdown
+                          ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/50 dark:text-sky-400'
+                          : 'text-gray-400 hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10'
+                      }`}
+                      title={showMarkdown ? 'Show raw' : 'Render markdown'}
+                    >
+                      <FileText size={15} />
+                    </button>
+                  )}
+
+                  {/* Collections */}
+                  {unusedCollections.length > 0 && (
+                    <div className="relative group/col">
+                      <button
+                        onClick={() => { }}
+                        className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10"
+                        title="Add to collection"
+                      >
+                        <FolderPlus size={15} />
+                      </button>
+                      <div className="absolute right-0 top-full z-30 mt-1 hidden group-hover/col:block w-44 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                        {unusedCollections.map((c) => (
+                          <button
+                            key={c.id}
+                            onClick={() => handleAddToCollection(c.id)}
+                            className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                          >
+                            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.color }} />
+                            {c.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <button onClick={handleCopy} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10" title="Copy">
+                    <Copy size={15} />
+                  </button>
+                  <button onClick={handleDelete} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:hover:bg-red-950/50 dark:hover:text-red-400" title="Delete">
+                    <Trash2 size={15} />
+                  </button>
+                </>
               )}
               <button onClick={closeModal} className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-black/10 hover:text-gray-600 dark:hover:bg-white/10" title="Close">
                 <X size={15} />

@@ -162,92 +162,6 @@ export function NoteCard({ note }: NoteCardProps) {
         </div>
 
         <div className="flex items-center gap-0.5 md:opacity-0 md:transition-opacity md:duration-150 md:group-hover:opacity-100" onClick={(e) => e.stopPropagation()}>
-          {/* Color picker */}
-          <div className="relative">
-            <button
-              onClick={() => { setShowColorPicker(!showColorPicker); setShowCollectionPicker(false); }}
-              className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-              title="Change color"
-            >
-              <Palette size={13} />
-            </button>
-            {showColorPicker && (
-              <div className="absolute bottom-full right-0 z-30 mb-1 flex gap-1 rounded-lg border border-gray-200 bg-white p-1.5 shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                {NOTE_COLORS.map((c) => (
-                  <button
-                    key={c.id}
-                    onClick={() => handleColorChange(c.id)}
-                    className={`h-5 w-5 rounded-full border-2 transition-transform hover:scale-125 ${
-                      c.border
-                    } ${note.colorId === c.id ? 'border-gray-800 dark:border-white scale-125' : 'border-transparent'}`}
-                    style={{ backgroundColor: `var(--color-${c.id})` }}
-                    title={c.name}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Markdown toggle */}
-          {hasMd && (
-            <button
-              onClick={() => setShowMarkdown(!showMarkdown)}
-              className={`touch-target-sm rounded-md p-1.5 transition-colors ${
-                showMarkdown
-                  ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/50 dark:text-sky-400'
-                  : 'text-gray-400 hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300'
-              }`}
-              title={showMarkdown ? 'Show raw' : 'Render markdown'}
-            >
-              <FileText size={13} />
-            </button>
-          )}
-
-          {/* Add to collection */}
-          {unusedCollections.length > 0 && (
-            <div className="relative">
-              <button
-                onClick={() => { setShowCollectionPicker(!showCollectionPicker); setShowColorPicker(false); }}
-                className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                title="Add to collection"
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              </button>
-              {showCollectionPicker && (
-                <div className="absolute bottom-full right-0 z-30 mb-1 w-40 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                  {unusedCollections.map((c) => (
-                    <button
-                      key={c.id}
-                      onClick={() => handleAddToCollection(c.id)}
-                      className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                    >
-                      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.color }} />
-                      {c.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          <button
-            onClick={() => togglePin(note.id)}
-            className={`touch-target-sm rounded-md p-1.5 transition-colors ${
-              note.isPinned
-                ? 'text-sky-500 hover:text-sky-600'
-                : 'text-gray-400 hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300'
-            }`}
-            title={note.isPinned ? 'Unpin' : 'Pin'}
-          >
-            <Pin size={13} fill={note.isPinned ? 'currentColor' : 'none'} />
-          </button>
-          <button
-            onClick={handleCopy}
-            className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-            title="Copy"
-          >
-            <Copy size={13} />
-          </button>
           {note.isDeleted ? (
             <>
               <button
@@ -266,13 +180,101 @@ export function NoteCard({ note }: NoteCardProps) {
               </button>
             </>
           ) : (
-            <button
-              onClick={() => deleteNote(note.id)}
-              className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:text-gray-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
-              title="Delete"
-            >
-              <Trash2 size={13} />
-            </button>
+            <>
+              {/* Color picker */}
+              <div className="relative">
+                <button
+                  onClick={() => { setShowColorPicker(!showColorPicker); setShowCollectionPicker(false); }}
+                  className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                  title="Change color"
+                >
+                  <Palette size={13} />
+                </button>
+                {showColorPicker && (
+                  <div className="absolute bottom-full right-0 z-30 mb-1 flex gap-1 rounded-lg border border-gray-200 bg-white p-1.5 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                    {NOTE_COLORS.map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => handleColorChange(c.id)}
+                        className={`h-5 w-5 rounded-full border-2 transition-transform hover:scale-125 ${
+                          c.border
+                        } ${note.colorId === c.id ? 'border-gray-800 dark:border-white scale-125' : 'border-transparent'}`}
+                        style={{ backgroundColor: `var(--color-${c.id})` }}
+                        title={c.name}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Markdown toggle */}
+              {hasMd && (
+                <button
+                  onClick={() => setShowMarkdown(!showMarkdown)}
+                  className={`touch-target-sm rounded-md p-1.5 transition-colors ${
+                    showMarkdown
+                      ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/50 dark:text-sky-400'
+                      : 'text-gray-400 hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300'
+                  }`}
+                  title={showMarkdown ? 'Show raw' : 'Render markdown'}
+                >
+                  <FileText size={13} />
+                </button>
+              )}
+
+              {/* Add to collection */}
+              {unusedCollections.length > 0 && (
+                <div className="relative">
+                  <button
+                    onClick={() => { setShowCollectionPicker(!showCollectionPicker); setShowColorPicker(false); }}
+                    className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                    title="Add to collection"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                  </button>
+                  {showCollectionPicker && (
+                    <div className="absolute bottom-full right-0 z-30 mb-1 w-40 rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                      {unusedCollections.map((c) => (
+                        <button
+                          key={c.id}
+                          onClick={() => handleAddToCollection(c.id)}
+                          className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                        >
+                          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.color }} />
+                          {c.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <button
+                onClick={() => togglePin(note.id)}
+                className={`touch-target-sm rounded-md p-1.5 transition-colors ${
+                  note.isPinned
+                    ? 'text-sky-500 hover:text-sky-600'
+                    : 'text-gray-400 hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300'
+                }`}
+                title={note.isPinned ? 'Unpin' : 'Pin'}
+              >
+                <Pin size={13} fill={note.isPinned ? 'currentColor' : 'none'} />
+              </button>
+              <button
+                onClick={handleCopy}
+                className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-gray-200/60 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                title="Copy"
+              >
+                <Copy size={13} />
+              </button>
+              <button
+                onClick={() => deleteNote(note.id)}
+                className="touch-target-sm rounded-md p-1.5 text-gray-400 transition-colors hover:bg-red-100 hover:text-red-500 dark:text-gray-500 dark:hover:bg-red-950/50 dark:hover:text-red-400"
+                title="Delete"
+              >
+                <Trash2 size={13} />
+              </button>
+            </>
           )}
         </div>
       </div>
