@@ -23,13 +23,13 @@ export function Navbar({ onPasteClick }: NavbarProps) {
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 lg:hidden touch-target"
+            className="rounded-lg max-md:p-1.5 md:p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 lg:hidden touch-target"
             aria-label="Toggle sidebar"
           >
-            <Menu size={18} />
+            <Menu size={16} />
           </button>
           <div className="flex items-center gap-2 select-none min-w-0">
-            <span className="text-lg font-bold tracking-tighter text-gray-800 dark:text-gray-100 shrink-0">
+            <span className="max-md:text-sm md:text-base font-bold tracking-tighter text-gray-800 dark:text-gray-100 shrink-0">
               ⌘V
             </span>
             <span className="text-[11px] font-medium tracking-wide text-gray-400 dark:text-gray-500 hidden sm:inline-block truncate">
@@ -86,14 +86,14 @@ export function Navbar({ onPasteClick }: NavbarProps) {
 
           <button
             onClick={() => toggleTrash()}
-            className={`relative rounded-lg p-2 transition-colors touch-target ${
+            className={`relative rounded-lg max-md:p-1.5 md:p-2 transition-colors touch-target ${
               showTrash
                 ? 'text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-950/50'
                 : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200'
             }`}
             aria-label="Trash"
           >
-            <Trash2 size={17} />
+            <Trash2 size={14} />
             {trashCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-[14px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold text-white">
                 {trashCount > 9 ? '9+' : trashCount}
@@ -103,29 +103,29 @@ export function Navbar({ onPasteClick }: NavbarProps) {
 
           <button
             onClick={toggleTheme}
-            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
+            className="rounded-lg max-md:p-1.5 md:p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
           {isInstallable && (
             <button
               onClick={promptInstall}
-              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
+              className="rounded-lg max-md:p-1.5 md:p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
               aria-label="Install app"
               title="Install app"
             >
-              <Download size={17} />
+              <Download size={14} />
             </button>
           )}
 
           <button
             onClick={() => openModal('settings')}
-            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
+            className="rounded-lg max-md:p-1.5 md:p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
             aria-label="Settings"
           >
-            <Settings size={17} />
+            <Settings size={14} />
           </button>
         </div>
       </div>
