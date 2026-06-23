@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Tag, ArrowUpDown, Layers, Trash2, FolderPlus, Plus, Edit3, Check, PenLine } from 'lucide-react';
 import { useNotesStore } from '../../store/notesStore';
 import { useUIStore } from '../../store/uiStore';
@@ -7,6 +7,15 @@ import { useCollectionsStore } from '../../store/collectionsStore';
 export function Sidebar() {
   const { tags, notes } = useNotesStore();
   const { selectedTagId, selectTag, selectedCollectionId, selectCollection, sortMode, setSortMode, sidebarOpen, setSidebarOpen, showTrash, toggleTrash, activeWritePad, setActiveWritePad } = useUIStore();
+
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.classList.add('sidebar-open');
+    } else {
+      document.body.classList.remove('sidebar-open');
+    }
+    return () => { document.body.classList.remove('sidebar-open'); };
+  }, [sidebarOpen]);
   const { collections, addCollection, renameCollection, removeCollection, addNoteToCollection } = useCollectionsStore();
   const [newColName, setNewColName] = useState('');
   const [showNewCol, setShowNewCol] = useState(false);
@@ -58,13 +67,13 @@ export function Sidebar() {
     <>
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-[60] bg-black/30 backdrop-blur-sm lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside
-        className={`sidebar-mobile fixed left-0 z-50 w-72 border-r border-gray-200 bg-gray-50 transition-transform duration-200 dark:border-gray-800 dark:bg-gray-950 lg:sticky lg:z-10 lg:translate-x-0 lg:w-60 lg:top-14 lg:h-[calc(100dvh-56px)] ${
+        className={`fixed left-0 z-[70] w-[80%] max-w-[350px] top-0 h-dvh border-r border-gray-200 bg-gray-50 transition-transform duration-300 dark:border-gray-800 dark:bg-gray-950 lg:sticky lg:z-10 lg:translate-x-0 lg:w-60 lg:top-14 lg:h-[calc(100dvh-56px)] ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

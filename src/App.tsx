@@ -4,6 +4,7 @@ import { Layout } from './components/Layout/Layout';
 import { HomePage } from './pages/HomePage';
 import { ImportPage } from './pages/ImportPage';
 import { PasteModal } from './components/Paste/PasteModal';
+import { PasteMobileModal } from './components/Paste/PasteMobileModal';
 import { ShareModal } from './components/Share/ShareModal';
 import { SettingsPanel } from './components/Settings/SettingsPanel';
 import { NoteFocusModal } from './components/Notes/NoteFocusModal';
@@ -62,6 +63,7 @@ export default function App() {
         </Route>
       </Routes>
       <PasteModal />
+      <PasteMobileModal />
       <ShareModal />
       <SettingsPanel />
       <NoteFocusModal />

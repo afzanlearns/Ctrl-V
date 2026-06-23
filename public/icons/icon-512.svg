@@ -1,4 +1,22 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="100" fill="#6366f1"/>
-  <text x="256" y="340" font-family="system-ui" font-size="260" font-weight="800" fill="white" text-anchor="middle">V</text>
+  <rect width="512" height="512" rx="100" fill="#0EA5E9"/>
+  <!-- Clipboard body -->
+  <rect x="136" y="100" width="240" height="310" rx="36" fill="white"/>
+  <!-- Clipboard inner -->
+  <rect x="160" y="145" width="192" height="245" rx="18" fill="#F0F9FF"/>
+  <!-- Clip -->
+  <rect x="216" y="74" width="80" height="54" rx="16" fill="white"/>
+  <rect x="200" y="118" width="112" height="20" rx="10" fill="#E0F2FE"/>
+  <!-- Pen body -->
+  <rect x="266" y="230" width="26" height="194" rx="10" fill="#F59E0B" transform="rotate(25 279 327)"/>
+  <!-- Pen nib -->
+  <polygon points="289,400 279,440 269,400" fill="#F59E0B" transform="rotate(25 279 420)"/>
+  <!-- Pen tip -->
+  <circle cx="279" cy="440" r="8" fill="#1E293B" transform="rotate(25 279 440)"/>
+  <!-- Lines on clipboard -->
+  <rect x="180" y="175" width="152" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="180" y="210" width="118" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="180" y="245" width="140" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="180" y="280" width="96" height="10" rx="5" fill="#BAE6FD"/>
+  <rect x="180" y="315" width="130" height="10" rx="5" fill="#BAE6FD"/>
 </svg>

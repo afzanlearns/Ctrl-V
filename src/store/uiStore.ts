@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type ModalView = 'none' | 'paste' | 'focus' | 'share' | 'settings' | 'collections';
+export type ModalView = 'none' | 'paste' | 'mobilePaste' | 'focus' | 'share' | 'settings' | 'collections';
 
 export type SortMode = 'newest' | 'oldest' | 'pinned';
 

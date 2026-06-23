@@ -123,7 +123,9 @@ export function NoteCanvas() {
                 ? 'Try a different search term'
                 : selectedCollectionId
                   ? 'Add notes to this collection from the note card'
-                  : 'Press ⌘⇧V to paste your first note'}
+                  : ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+                    ? 'Tap Write Down or Paste Note to create your first note'
+                    : 'Press ⌘⇧V to paste your first note'}
           </p>
         </div>
       ) : (

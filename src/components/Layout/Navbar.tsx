@@ -76,8 +76,17 @@ export function Navbar({ onPasteClick }: NavbarProps) {
           </button>
 
           <button
+            onClick={() => openModal('mobilePaste')}
+            className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 lg:hidden"
+            title="Paste a note"
+          >
+            <Clipboard size={13} />
+            <span className="hidden sm:inline">Paste Note</span>
+          </button>
+
+          <button
             onClick={() => toggleTrash()}
-            className={`relative rounded-lg p-2 transition-colors ${
+            className={`relative rounded-lg p-2 transition-colors touch-target ${
               showTrash
                 ? 'text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-950/50'
                 : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200'
@@ -94,7 +103,7 @@ export function Navbar({ onPasteClick }: NavbarProps) {
 
           <button
             onClick={toggleTheme}
-            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
@@ -103,7 +112,7 @@ export function Navbar({ onPasteClick }: NavbarProps) {
           {isInstallable && (
             <button
               onClick={promptInstall}
-              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+              className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
               aria-label="Install app"
               title="Install app"
             >
@@ -113,7 +122,7 @@ export function Navbar({ onPasteClick }: NavbarProps) {
 
           <button
             onClick={() => openModal('settings')}
-            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+            className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 touch-target"
             aria-label="Settings"
           >
             <Settings size={17} />

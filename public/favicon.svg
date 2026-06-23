@@ -1,4 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#6366f1"/>
-  <text x="50" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="800" fill="white" text-anchor="middle">V</text>
+  <rect width="100" height="100" rx="20" fill="#0EA5E9"/>
+  <!-- Clipboard body -->
+  <rect x="28" y="22" width="44" height="56" rx="6" fill="white"/>
+  <!-- Clipboard inner -->
+  <rect x="32" y="30" width="36" height="44" rx="3" fill="#F0F9FF"/>
+  <!-- Clip -->
+  <rect x="42" y="18" width="16" height="10" rx="3" fill="white"/>
+  <rect x="39" y="26" width="22" height="4" rx="2" fill="#E0F2FE"/>
+  <!-- Pen body -->
+  <rect x="54" y="48" width="4" height="34" rx="1.5" fill="#F59E0B" transform="rotate(25 56 65)"/>
+  <!-- Pen nib -->
+  <polygon points="57,78 55,82 53,78" fill="#F59E0B" transform="rotate(25 55 80)"/>
+  <!-- Pen tip -->
+  <circle cx="55" cy="82" r="1.5" fill="#1E293B" transform="rotate(25 55 82)"/>
+  <!-- Lines on clipboard -->
+  <rect x="36" y="36" width="28" height="2" rx="1" fill="#BAE6FD"/>
+  <rect x="36" y="42" width="22" height="2" rx="1" fill="#BAE6FD"/>
+  <rect x="36" y="48" width="26" height="2" rx="1" fill="#BAE6FD"/>
+  <rect x="36" y="54" width="18" height="2" rx="1" fill="#BAE6FD"/>
+  <rect x="36" y="60" width="24" height="2" rx="1" fill="#BAE6FD"/>
 </svg>

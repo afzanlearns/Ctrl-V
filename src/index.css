@@ -103,6 +103,13 @@
 
 ::selection { background-color: rgba(14, 165, 233, 0.25); }
 
+/* ─── Sidebar open — prevent horizontal scroll ─── */
+body.sidebar-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
 /* ─── Safe areas for notched / rounded screens ─── */
 .safe-area-top {
   padding-top: env(safe-area-inset-top, 0px);
@@ -119,23 +126,6 @@
 .touch-target-sm {
   min-height: 36px;
   min-width: 36px;
-}
-
-/* ─── Sidebar height (dvh-aware) ─── */
-.sidebar-mobile {
-  top: 56px;
-  height: calc(100dvh - 56px);
-}
-@supports (height: 100dvh) {
-  .sidebar-mobile {
-    height: calc(100dvh - 56px);
-  }
-}
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  .sidebar-mobile {
-    padding-bottom: env(safe-area-inset-bottom);
-    height: calc(100dvh - 56px - env(safe-area-inset-bottom));
-  }
 }
 
 /* ─── Prevent text size adjust on orientation change ─── */
